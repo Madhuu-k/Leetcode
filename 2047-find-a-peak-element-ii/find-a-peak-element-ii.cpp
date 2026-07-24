@@ -4,15 +4,22 @@ public:
         int r = mat.size();
         int c = mat[0].size();
 
-        for(int i = 0; i < r; i++){
-            for(int j = 0; j < c; j++){
-                int left = (j > 0) ? mat[i][j-1] : -1;
-                int right = (j < c - 1) ? mat[i][j+1] : -1;
-                int up = (i > 0) ? mat[i-1][j] : -1;
-                int down = (i < r - 1) ? mat[i+1][j] : -1;
+        int low = 0, high = c - 1;
 
-                if(mat[i][j] > left && mat[i][j] > right && mat[i][j] > up && mat[i][j] > down) return {i, j};
+        while(low <= high){
+            int mid = low + (high - low) / 2;
+            int maxRow = 0;
+
+            for(int i = 1; i < r; i++){
+                if(mat[i][mid] > mat[maxRow][mid]) maxRow = i;
             }
+
+            int left = (mid > 0) ? mat[maxRow][mid-1] : -1;
+            int right = (mid < c - 1) ? mat[maxRow][mid + 1] : -1;
+ 
+            if(mat[maxRow][mid] > left && mat[maxRow][mid] > right) return {maxRow, mid};
+            else if (left > mat[maxRow][mid]) high =  mid - 1;
+            else low = mid + 1;
         }
 
         return {-1, -1};
