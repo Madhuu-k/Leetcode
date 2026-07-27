@@ -1,11 +1,11 @@
 class Solution {
 public:
     bool canFinish(vector<int>& piles, int mid, int h){
-        long long hours = 0;
+        long long rate = 0;
         for(int x : piles){
-            hours += (x + (long long)mid - 1) / mid;
+            rate += (x + (long long)mid - 1) / mid;
         }
-        return hours <= h;
+        return rate <= h;
     }
 
     int minEatingSpeed(vector<int>& piles, int h) {
