@@ -4,14 +4,10 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
-        majority = len(nums) / 2
-        freq = {}
 
+        seen = {}
         for x in nums:
-            freq[x] = freq.get(x, 0) + 1
-        
-        for key, value in freq.items():
-            if(value > majority):
-                return key
+            seen[x] = seen.get(x, 0) + 1
 
-        return 0
+        return max(seen, key=seen.get)
+                
