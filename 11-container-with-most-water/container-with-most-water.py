@@ -4,8 +4,8 @@ class Solution(object):
         :type height: List[int]
         :rtype: int
         """
-        l, r = 0, len(height) - 1
         ans = 0
+        l, r = 0, len(height) - 1
 
         while l < r:
             area = min(height[l], height[r]) * (r - l)
